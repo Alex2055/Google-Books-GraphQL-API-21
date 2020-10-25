@@ -56,7 +56,7 @@ const SearchBooks = () => {
     }
   };
 
-  const [newSaveBook] = useMutation(SAVE_BOOK);
+  const [saveBook] = useMutation(SAVE_BOOK);
   // create function to handle saving a book to our database
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
@@ -70,11 +70,11 @@ const SearchBooks = () => {
     }
 
     try {
-      
-      const {data} = await newSaveBook({
-        variables: { input: bookToSave },
+      //console.log(bookToSave)
+      const {data} = await saveBook({
+        variables: { ...bookToSave },
       });
-      console.log(data)
+      
 
       // if (!response.ok) {
       //   throw new Error('something went wrong!');

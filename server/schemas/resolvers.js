@@ -5,10 +5,11 @@ const resolvers = {
 
 Query: {
     me: async (parent, args, context) => {
-        console.log(context.user)
+       
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
+          
         return userData;
       }
 
@@ -37,12 +38,12 @@ Mutation: {
         const token = signToken(user);
         return { token, user };
     },
-    saveBook: async (parent, {input}, context) => {
+    saveBook: async (parent, args, context) => {
         if (context.user) {
-            
+            //console.log(args)
             const updateduser = await User.findByIdAndUpdate(
             {_id: context.user._id},
-            { $addToSet: { savedBooks: input} },
+            { $addToSet: { savedBooks: args} },
             { new: true})
 
             return updateduser;

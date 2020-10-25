@@ -13,8 +13,8 @@ const SavedBooks = () => {
   
   //const [userData, setUserData] = useState({});
   const {loading, data} = useQuery(GET_ME)
-  // console.log(loading)
-  console.log(data)
+  
+  
   const userData = data?.me || {};
 
   
