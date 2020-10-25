@@ -33,8 +33,7 @@ type Auth {
   }
   
 type Query {
-    users: [User]
-    me(username: String): User
+    me: User
 
   }
   

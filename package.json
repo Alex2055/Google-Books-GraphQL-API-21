@@ -9,7 +9,6 @@
     "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "heroku-postbuild": "cd client && npm run build"
-   
   },
   "repository": {
     "type": "git",
@@ -19,6 +18,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/react-hooks": "^4.0.0",
+    "apollo-boost": "^0.4.9",
     "apollo-server-express": "^2.18.2",
     "if-env": "^1.0.4"
   },
