@@ -39,8 +39,8 @@ Mutation: {
         return { token, user };
     },
     saveBook: async (parent, args, context) => {
+        console.log(args)
         if (context.user) {
-            //console.log(args)
             const updateduser = await User.findByIdAndUpdate(
             {_id: context.user._id},
             { $addToSet: { savedBooks: args} },
@@ -52,12 +52,13 @@ Mutation: {
 },
 removeBook: async (parent, params, context) => {
     if (context.user) {
-        const deleteuser = await User.findByIdAndUpdate(
+        console.log(params.bookId)
+        const deletedbookuser = await User.findByIdAndUpdate(
             {_id: context.user._id},
             { $pull: { savedBooks: {bookId: params.bookId}} },
             { new: true}
         )
-        return deleteuser;
+        return deletedbookuser;
     }
 }
     
