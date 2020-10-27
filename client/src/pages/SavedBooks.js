@@ -1,4 +1,4 @@
- import React from 'react'; //{ useState, useEffect }
+import React from 'react'; //{ useState, useEffect }
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 //import { getMe, deleteBook } from '../utils/API';
@@ -10,42 +10,16 @@ import { useMutation } from '@apollo/react-hooks';
 import { REMOVE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
-  
+
   //const [userData, setUserData] = useState({});
-  const {loading, data} = useQuery(GET_ME)
-  
-  
+  const { loading, data } = useQuery(GET_ME)
+
+
   const userData = data?.me || {};
 
-  
+
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
-  
-
-  // useEffect(() => {
-  //   const getUserData = async () => {
-  //     try {
-  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  //       if (!token) {
-  //         return false;
-  //       }
-
-  //       const response = await getMe(token);
-
-  //       if (!response.ok) {
-  //         throw new Error('something went wrong!');
-  //       }
-
-  //       const user = await response.json();
-  //       setUserData(user);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-
-  //   getUserData();
-  // }, [userDataLength]);
 
 
   const [removeBook] = useMutation(REMOVE_BOOK);
@@ -58,18 +32,12 @@ const SavedBooks = () => {
     }
 
     try {
-      
-      const {removedata} = await removeBook({
+
+      const { removedata } = await removeBook({
         variables: { bookId: bookId },
       });
 
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
 
-      //const updatedUser = await response.json();
-      //setUserData(updatedUser);
-      // upon success, remove book's id from localStorage
       console.log(bookId);
       removeBookId(bookId);
     } catch (err) {
@@ -78,11 +46,11 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  
 
-
-  return <h2>LOADING1...</h2>;
-  }
+    if (loading) {
+      return <h2>LOADING1...</h2>;
+    }
 
   return (
     <>
